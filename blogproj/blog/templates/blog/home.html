@@ -1,0 +1,55 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<style>
+    body {
+        background-color: #007bff; /* Light gray background */
+        color: #343a40; /* Dark gray text */
+    }
+
+    .article-img {
+        width: 50px; /* Adjust the width of the profile image */
+        height: 50px; /* Adjust the height of the profile image */
+        object-fit: cover; /* Maintain aspect ratio and cover container */
+        margin-right: 15px; /* Add spacing between the image and text */
+    }
+
+   .content-section {
+    background-color: #fdf5e6; /* Light beige background */
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+    .article-metadata {
+        margin-bottom: 20px; /* Add spacing below metadata */
+    }
+
+    .article-title {
+    color: #004080; /* Dark blue color for post titles */
+}
+
+    .article-content {
+        line-height: 1.6; /* Adjust line height for better readability */
+    }
+</style>
+
+{% for post in posts %}
+    <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ post.author }}</a>
+                <small class="text-muted">{{ post.date_posted }}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'blog-detail' post.id %}"><strong>{{ post.title }}</strong></a></h2>
+            <p class="article-content">{{ post.content }}</p>
+        </div>
+        <br>
+    </article>
+{% endfor %}
+
+{% endblock content %}

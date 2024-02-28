@@ -1,0 +1,55 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+  .cardd {
+    background-color: #fdf5e6 !important; /* White background for the card */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Dark gray box shadow */
+  }
+
+  .content-section {
+    background-color: #fdf5e6 !important; /* Light beige background */
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Left-align text in form labels */
+  .content-section label {
+    text-align: left;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* Left-align text inside form controls (e.g., input fields and textareas) */
+  .content-section input[type="text"],
+  .content-section input[type="password"],
+  .content-section input[type="email"],
+  .content-section textarea {
+    text-align: left;
+  }
+
+  /* Adjust button alignment */
+  .content-section button {
+    margin-left: 0;
+  }
+</style>
+
+<div class="content-section">
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <h2 class="card-title text-center mb-4"><strong>Update Your Profile</strong></h2>
+      {{ u_form|crispy }}
+      {{ p_form|crispy }}
+    </fieldset>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">Update Profile</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}

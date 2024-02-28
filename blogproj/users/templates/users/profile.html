@@ -1,0 +1,90 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!-- Link to Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    body {
+        background-color: #fdf5e6; /* Set a light beige background color */
+        color: #333; /* Set text color to a dark shade */
+    }
+
+    .content-section {
+        background-color: #000000; /* Light background for the content section */
+        margin-bottom: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+   .cardd {
+    background-color: #fdf5e6; /* White background for the card */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Dark gray box shadow */
+}
+
+
+
+    .account-img {
+        border: 3px solid #fff; /* White border for the profile image */
+    }
+
+    #profile-h1 {
+    color: #000; /* Black color for the text */
+}
+
+
+    .title {
+        color: #000000; /* Set text color to white */
+    }
+
+    .social-links a {
+        color: #fff; /* Set social links color to white */
+        margin-right: 10px; /* Add some space between social links */
+        font-size: 20px; /* Increase the font size of social links */
+    }
+
+    .btn-info,
+    .btn-outline-info a {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        margin-top: 10px; /* Add some space above the button */
+    }
+
+    .btn-info:hover,
+    .btn-outline-info a:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="content-section cardd col-md-6 mx-auto mt-5">
+    <div class="text-center">
+        <img class="rounded-circle account-img" id="profile-img" src="{{ user.profile.image.url }}" alt="User-Profile-Image">
+        <h1 id="profile-h1"><strong>{{ user.username|title }}</strong></h1>
+        <p class="title">{{ user.email }}</p>
+        <div class="social-links">
+            <a href="#" id="auth-links"><i class="fa fa-dribbble"></i></a>
+            <a href="#" id="auth-links"><i class="fa fa-twitter"></i></a>
+            <a href="#" id="auth-links"><i class="fa fa-linkedin"></i></a>
+            <a href="#" id="auth-links"><i class="fa fa-facebook"></i></a>
+        </div>
+    </div>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+        </fieldset>
+    </form>
+
+    <div>
+        <button class="btn btn-info"><a href="{% url 'profile-update' %}" id="auth-links">Update Profile</a></button>
+    </div>
+</div>
+
+{% endblock content %}
