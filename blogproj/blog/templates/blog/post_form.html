@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
+{% load bootstrap4 %}
 
 {% block content %}
 <style>
@@ -24,10 +25,10 @@
                 <form action="" method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        {{ form.title|as_crispy_field }}
+                        {{ form.title}}
                     </div>
                     <div class="form-group">
-                        {{ form.content|as_crispy_field }}
+                        {{ form.content }}
                     </div>
                     <button class="btn btn-primary btn-block" type="submit">Post</button>
                 </form>
